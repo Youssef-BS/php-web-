@@ -20,11 +20,7 @@ if (!empty($_POST["nom"]) && !empty($_POST["prenom"]) && !empty($_POST["adresse"
     echo "<script>Paramètres manquants pour l'ajout.</script>";
 }
 
-if(isset($_POST["recherche"])){
 
-   $etu = $_POST["idEtu"];
-   
-}
 
 
 ?>
@@ -42,11 +38,10 @@ if(isset($_POST["recherche"])){
 </head>
 <body>
     <h1>Trouver un etudiant</h1>
-    <form>
-    <input type="number" name="recherche" />
-    <input type="submit" name="idEtu" value="recherche">
-    </form>
-
+        <form method="GET" action="./php/rechercheEtudiant.php"> 
+        <input type="text" name="code" placeholder="Enter student code">
+        <button>recherche</button>
+        </form>
     <h1>Ajouter Étudiant</h1>
     <form method="POST">
         nom: <input type="text" name="nom" />

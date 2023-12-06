@@ -93,22 +93,22 @@ return $this->classe;
     }
 
 
-function update_Etudiant(){
-    $conn = returnConn(); // connection base donne 
-    $flag = $conn->query("UPDATE etudiant where codeetudiant".$this->codeetudiant); // execute query b requete 
-    if($flag)
-    return true ;
-else return false ;
-}
+    function update_Etudiant($code, $nom, $prenom, $adresse, $classe) {
+        $conn = returnConn(); // conection base
+        $flag = "UPDATE etudiant SET nom = '$nom', prenom = '$prenom', adresse = '$adresse', classe = '$classe' WHERE codeetudiant = '$code'"; //update requette 
+        return mysqli_query($conn, $flag) ? true : false; //execution requette
+    }
 
-function Recherche_Etudiant($code){   //recherche d'apres le code 
-    $conn = returnConn();
-    $flag = $conn->query("SELECT * FROM etudiant WHERE codeetudiant = $code");
-    if($flag)
-    return true ;
-else return false ;
-}
-    
+    function Recherche_Etudiant($code){   //recherche d'apres le code 
+        $conn = returnConn();
+        $flag = "SELECT * FROM etudiant WHERE codeetudiant = $code";  //execution requette
+        $result = mysqli_query($conn, $flag); //execution requette
+        if ($result && mysqli_num_rows($result) > 0) { // kn result shiha w fam resultat
+            return mysqli_fetch_assoc($result); //yrajaalk resultat
+        } else {
+            return null;
+        }
+    } 
 
 
 
